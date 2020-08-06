@@ -41,8 +41,8 @@ Route::prefix('v1')->group(function ()  {
         Route::get('cars', 'CarController@index')->name('cars');
         Route::get('cars/brands/{brand}', 'CarController@indexBrands')->name('cars.brands');
         Route::post('cars/{car}', 'CarController@show')->name('cars.show');
-        Route::post('cars/{car}/buy', 'CarController@show')->name('cars.buy');
-        Route::post('cars/{car}/trade', 'CarController@show')->name('cars.trade');
-        Route::post('cars/{car}/trade/evaluate', 'CarController@show')->name('cars.trade.evaluate');
+        Route::post('cars/{car}/buy', 'CarController@buy')->name('cars.buy');
+        Route::post('cars/{car}/trade', 'CarController@trade')->name('cars.trade');
+        Route::post('cars/{car}/trade/evaluate', 'CarController@tradeEvaluate')->name('cars.trade.evaluate');
     });
 });
