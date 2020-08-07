@@ -3,16 +3,31 @@
 namespace Tests\Unit;
 
 use App\Car;
-use PHPUnit\Framework\TestCase;
+use App\Client;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\URL;
+use Tests\TestCase;
 
 class CarTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * Test storing a newly created car in storage.
      */
     public function testStore()
     {
-        $this->assertTrue(true);
+        $url = URL::signedRoute('cars.add');
+
+        $data = factory(Car::class)->make()->attributesToArray();
+
+        $this->postJson($url, $data)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -20,7 +35,15 @@ class CarTest extends TestCase
      */
     public function testUpdate()
     {
-        //
+        factory(Car::class, 100)->create();
+
+        $url = URL::signedRoute('cars.update', ['car' => rand(0,100)]);
+
+        $data = factory(Car::class)->make()->attributesToArray();
+
+        $this->patchJson($url, $data)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -28,7 +51,13 @@ class CarTest extends TestCase
      */
     public function testDestroy()
     {
-        //
+        factory(Car::class, 100)->create();
+
+        $url = URL::signedRoute('cars.remove', ['car' => rand(0,100)]);
+
+        $this->deleteJson($url)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -36,7 +65,19 @@ class CarTest extends TestCase
      */
     public function testIndex()
     {
-        //
+        factory(Car::class, 100)->create();
+
+        $url = URL::signedRoute('cars');
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure(['total', 'per_page', 'current_page', 'last_page', 'first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'path', 'from', 'to', 'data']);
+
+        $url = URL::signedRoute('cars', ['per_page' => rand(1,100)]);
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure(['total', 'per_page', 'current_page', 'last_page', 'first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'path', 'from', 'to', 'data']);
     }
 
     /**
@@ -44,7 +85,15 @@ class CarTest extends TestCase
      */
     public function testIndexBrands()
     {
-        //
+        factory(Car::class, 100)->create();
+
+        $brands = json_decode(File::get(base_path() . '/database/data/cars_brands.json'));
+
+        $url = URL::signedRoute('cars.brands', ['brand' => Arr::random($brands)]);
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure(['total', 'per_page', 'current_page', 'last_page', 'first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'path', 'from', 'to', 'data']);
     }
 
     /**
@@ -52,7 +101,13 @@ class CarTest extends TestCase
      */
     public function testShow()
     {
-        //
+        factory(Car::class, 100)->create();
+
+        $url = URL::signedRoute('cars.show', ['car' => rand(0,100)]);
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure(['brand', 'class', 'model', 'price']);
     }
 
     /**
@@ -60,7 +115,18 @@ class CarTest extends TestCase
      */
     public function testBuy()
     {
-        //
+        factory(Client::class, 200)->create();
+        factory(Car::class, 100)->create();
+
+        $url = URL::signedRoute('cars.buy', ['car' => rand(0,100)]);
+
+        $data = [
+            'client_id' => Client::all()->random()->id
+        ];
+
+        $this->postJson($url, $data)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -68,7 +134,24 @@ class CarTest extends TestCase
      */
     public function testTrade()
     {
-        //
+        factory(Client::class, 200)->create();
+        factory(Car::class, 100)->create();
+
+        $url = URL::signedRoute('cars.trade', ['car' => rand(0,100)]);
+
+        $data = [
+            'client_id' => Client::all()->random()->id,
+            'old_car' => [
+                'brand' => 'Tesla',
+                'class' => 'Model S',
+                'model' => 'E',
+                'year' => 2015
+            ]
+        ];
+
+        $this->postJson($url, $data)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -76,6 +159,19 @@ class CarTest extends TestCase
      */
     public function testTradeEvaluate()
     {
-        //
+        $url = URL::signedRoute('cars.trade.evaluate');
+
+        $data = [
+            'old_car' => [
+                'brand' => 'Tesla',
+                'class' => 'Model S',
+                'model' => 'E',
+                'year' => 2015
+            ]
+        ];
+
+        $this->postJson($url, $data)
+            ->assertSuccessful()
+            ->assertJsonStructure(['value']);
     }
 }

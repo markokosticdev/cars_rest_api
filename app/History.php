@@ -12,7 +12,7 @@ class History extends Model
      * @var array
      */
     protected $fillable = [
-        'client_id', 'car_id',
+        'client_id', 'car_id', 'type', 'payed',
     ];
 
     /**

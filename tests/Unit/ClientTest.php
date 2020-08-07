@@ -2,17 +2,37 @@
 
 namespace Tests\Unit;
 
+use App\Car;
 use App\Client;
-use PHPUnit\Framework\TestCase;
+use App\History;
+use Illuminate\Support\Facades\URL;
+use Tests\TestCase;
 
 class ClientTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
+
     /**
      * Test displaying a listing of clients.
      */
     public function testIndex()
     {
-        $this->assertTrue(true);
+        factory(Client::class, 200)->create();
+
+        $url = URL::signedRoute('clients');
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure(['total', 'per_page', 'current_page', 'last_page', 'first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'path', 'from', 'to', 'data']);
+
+        $url = URL::signedRoute('clients', ['per_page' => rand(1,200)]);
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure(['total', 'per_page', 'current_page', 'last_page', 'first_page_url', 'last_page_url', 'next_page_url', 'prev_page_url', 'path', 'from', 'to', 'data']);
     }
 
     /**
@@ -20,7 +40,13 @@ class ClientTest extends TestCase
      */
     public function testStore()
     {
-        //
+        $url = URL::signedRoute('clients.add');
+
+        $data = factory(Client::class)->make()->attributesToArray();
+
+        $this->postJson($url, $data)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -28,7 +54,13 @@ class ClientTest extends TestCase
      */
     public function testShow()
     {
-        //
+        factory(Client::class, 200)->create();
+
+        $url = URL::signedRoute('clients.show', ['client' => rand(0,200)]);
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure(['username', 'firstname', 'lastname', 'email']);
     }
 
     /**
@@ -36,7 +68,15 @@ class ClientTest extends TestCase
      */
     public function testUpdate()
     {
-        //
+        factory(Client::class, 200)->create();
+
+        $url = URL::signedRoute('clients.update', ['client' => rand(0,200)]);
+
+        $data = factory(Client::class)->make()->attributesToArray();
+
+        $this->patchJson($url, $data)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -44,7 +84,13 @@ class ClientTest extends TestCase
      */
     public function testDestroy()
     {
-        //
+        factory(Client::class, 200)->create();
+
+        $url = URL::signedRoute('clients.remove', ['client' => rand(0,200)]);
+
+        $this->deleteJson($url)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 
     /**
@@ -52,7 +98,15 @@ class ClientTest extends TestCase
      */
     public function testShowHistory()
     {
-        //
+        factory(Client::class, 200)->create();
+        factory(Car::class, 100)->create();
+        factory(History::class, 400)->create();
+
+        $url = URL::signedRoute('clients.history.show', ['client' => rand(0,200)]);
+
+        $this->getJson($url)
+            ->assertSuccessful()
+            ->assertJsonStructure([['client_id', 'car_id']]);
     }
 
     /**
@@ -60,6 +114,14 @@ class ClientTest extends TestCase
      */
     public function testDestroyHistory()
     {
-        //
+        factory(Client::class, 200)->create();
+        factory(Car::class, 100)->create();
+        factory(History::class, 400)->create();
+
+        $url = URL::signedRoute('clients.history.remove', ['client' => rand(0,200)]);
+
+        $this->deleteJson($url)
+            ->assertSuccessful()
+            ->assertJsonFragment(['success' => 'success']);
     }
 }

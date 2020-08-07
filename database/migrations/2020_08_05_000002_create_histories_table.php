@@ -16,6 +16,8 @@ class CreateHistoriesTable extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->integer('client_id')->unsigned();
             $table->integer('car_id')->unsigned();
+            $table->enum('type', ['buy', 'trade']);
+            $table->decimal('payed',9,3);
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients')
