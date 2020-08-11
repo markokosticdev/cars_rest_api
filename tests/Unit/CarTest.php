@@ -23,7 +23,7 @@ class CarTest extends TestCase
     {
         $url = URL::signedRoute('cars.add');
 
-        $data = factory(Car::class)->make()->attributesToArray();
+        $data = factory(Car::class)->make()->toArray();
 
         $this->postJson($url, $data)
             ->assertSuccessful()
@@ -39,7 +39,7 @@ class CarTest extends TestCase
 
         $url = URL::signedRoute('cars.update', ['car' => rand(0,100)]);
 
-        $data = factory(Car::class)->make()->attributesToArray();
+        $data = factory(Car::class)->make()->toArray();
 
         $this->patchJson($url, $data)
             ->assertSuccessful()

@@ -42,7 +42,7 @@ class ClientTest extends TestCase
     {
         $url = URL::signedRoute('clients.add');
 
-        $data = factory(Client::class)->make()->attributesToArray();
+        $data = factory(Client::class)->make()->toArray();
 
         $this->postJson($url, $data)
             ->assertSuccessful()
@@ -72,9 +72,9 @@ class ClientTest extends TestCase
 
         $url = URL::signedRoute('clients.update', ['client' => rand(0,200)]);
 
-        $data = factory(Client::class)->make()->attributesToArray();
+        $data = factory(Client::class)->make()->toArray();
 
-        $this->patchJson($url, $data)
+        $this->patchJson($url, $data)->dump()
             ->assertSuccessful()
             ->assertJsonFragment(['success' => 'success']);
     }

@@ -4,18 +4,6 @@
     <list default="true" id="96c026e4-51cd-404a-85f9-4345ec2d7c24" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/History.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/History.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CarController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/HistoryFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/HistoryFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_05_000002_create_histories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_05_000002_create_histories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/CarTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CarTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/ClientTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ClientTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/HistoryTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/HistoryTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/CarTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/CarTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Unit/ClientTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ClientTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +138,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -162,21 +150,17 @@
       <recent name="$PROJECT_DIR$/tests/Unit" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.Unit">
+  <component name="RunManager" selected="PHPUnit.tests">
     <configuration name="CarTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\CarTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/CarTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="CarTest.testBuy" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\CarTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/CarTest.php" method="testBuy" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="CarTest.testTrade" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\CarTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/CarTest.php" method="testTrade" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="CarTest.testTradeEvaluate" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\CarTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/CarTest.php" method="testTradeEvaluate" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ClientTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ClientTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ClientTest.php" scope="Class" />
       <method v="2" />
     </configuration>
     <configuration name="Unit" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -187,13 +171,17 @@
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.ClientTest" />
+        <item itemvalue="PHPUnit.CarTest" />
         <item itemvalue="PHPUnit.Unit" />
         <item itemvalue="PHPUnit.CarTest.testTradeEvaluate" />
-        <item itemvalue="PHPUnit.CarTest.testTrade" />
-        <item itemvalue="PHPUnit.CarTest.testBuy" />
-        <item itemvalue="PHPUnit.CarTest" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +196,8 @@
       <workItem from="1596406421567" duration="387000" />
       <workItem from="1596495202452" duration="4700000" />
       <workItem from="1596545715783" duration="112000" />
-      <workItem from="1596546326615" duration="23321000" />
+      <workItem from="1596546326615" duration="24262000" />
+      <workItem from="1597168325484" duration="366000" />
     </task>
     <servers />
   </component>
@@ -240,22 +229,22 @@
       <screen x="0" y="23" width="1440" height="830" />
     </state>
     <state x="458" y="200" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.830@0.23.1440.830" timestamp="1596723985174" />
-    <state width="1398" height="244" key="GridCell.Tab.0.bottom" timestamp="1596801756457">
+    <state width="1398" height="244" key="GridCell.Tab.0.bottom" timestamp="1596828489416">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.bottom/0.23.1440.830@0.23.1440.830" timestamp="1596801756457" />
-    <state width="1398" height="244" key="GridCell.Tab.0.center" timestamp="1596801756457">
+    <state width="1398" height="244" key="GridCell.Tab.0.bottom/0.23.1440.830@0.23.1440.830" timestamp="1596828489416" />
+    <state width="1398" height="244" key="GridCell.Tab.0.center" timestamp="1596828489415">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.center/0.23.1440.830@0.23.1440.830" timestamp="1596801756457" />
-    <state width="1398" height="244" key="GridCell.Tab.0.left" timestamp="1596801756457">
+    <state width="1398" height="244" key="GridCell.Tab.0.center/0.23.1440.830@0.23.1440.830" timestamp="1596828489415" />
+    <state width="1398" height="244" key="GridCell.Tab.0.left" timestamp="1596828489414">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.left/0.23.1440.830@0.23.1440.830" timestamp="1596801756457" />
-    <state width="1398" height="244" key="GridCell.Tab.0.right" timestamp="1596801756457">
+    <state width="1398" height="244" key="GridCell.Tab.0.left/0.23.1440.830@0.23.1440.830" timestamp="1596828489414" />
+    <state width="1398" height="244" key="GridCell.Tab.0.right" timestamp="1596828489415">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.right/0.23.1440.830@0.23.1440.830" timestamp="1596801756457" />
+    <state width="1398" height="244" key="GridCell.Tab.0.right/0.23.1440.830@0.23.1440.830" timestamp="1596828489415" />
     <state x="474" y="171" key="NewPhpClassDialog" timestamp="1596796540214">
       <screen x="0" y="23" width="1440" height="830" />
     </state>
